@@ -4,6 +4,10 @@ export class GetAllHousesService {
   constructor(private readonly prisma: PrismaClient) {}
 
   async getAll(): Promise<House[]> {
-    return this.prisma.house.findMany();
+    try {
+      return this.prisma.house.findMany();
+    } catch (err) {
+      throw err;
+    }
   }
 }

@@ -12,6 +12,7 @@ export const rootSchema = `#graphql
     type Query {
         house (args: Int): House!
         houses: [House!]!
+        biggestHouses: [House!]!
     }
 
     type Mutation {

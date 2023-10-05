@@ -1,6 +1,7 @@
 import {
   createHouseService,
   getAllHousesService,
+  getBiggestHousesService,
   getHouseService,
   updateHouseService,
 } from "../../di";
@@ -13,6 +14,7 @@ export const rootResolver = {
       return getHouseService.get(id);
     },
     houses: () => getAllHousesService.getAll(),
+    biggestHouses: () => getBiggestHousesService.get(),
   },
   Mutation: {
     createHouse: (_: any, { args }: { args: CreateHouseServiceDTO }) => {
