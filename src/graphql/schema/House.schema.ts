@@ -32,3 +32,10 @@ export const UpdateHouseInput = `
         buildAt:    String
     }
 `;
+
+export const GetBestHousesInAreaInput = `
+    input GetBestHousesInAreaInput {
+        lat:    Float!
+        lng:    Float!
+    }
+`;
