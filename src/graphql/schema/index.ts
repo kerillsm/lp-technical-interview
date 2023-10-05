@@ -1,18 +1,22 @@
 import {
   CreateHouseInput,
+  DeleteHouseInput,
   GetBestHousesInAreaInput,
+  GetHouseInput,
   HouseSchema,
   UpdateHouseInput,
 } from "./House.schema";
 
 export const rootSchema = `#graphql
     ${HouseSchema}
+    ${GetHouseInput}
+    ${GetBestHousesInAreaInput}
     ${CreateHouseInput}
     ${UpdateHouseInput}
-   ${GetBestHousesInAreaInput}
+    ${DeleteHouseInput}
 
     type Query {
-        house (args: Int!): House!
+        house (args: GetHouseInput!): House!
         houses: [House!]!
         biggestHouses: [House!]!
         nearestBiggestNewsetHouses (args: GetBestHousesInAreaInput!): [House!]!
@@ -21,5 +25,6 @@ export const rootSchema = `#graphql
     type Mutation {
         createHouse (args: CreateHouseInput!): House!
         updateHouse (args: UpdateHouseInput!): House!
+        deleteHouse (args: DeleteHouseInput!): House!
     }
 `;

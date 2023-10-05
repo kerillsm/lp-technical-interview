@@ -10,6 +10,19 @@ export const HouseSchema = `#graphql
     }
 `;
 
+export const GetHouseInput = `
+    input GetHouseInput {
+        id:     Int!
+    }
+`;
+
+export const GetBestHousesInAreaInput = `
+    input GetBestHousesInAreaInput {
+        lat:    Float!
+        lng:    Float!
+    }
+`;
+
 export const CreateHouseInput = `
     input CreateHouseInput {
         name:       String!
@@ -33,9 +46,8 @@ export const UpdateHouseInput = `
     }
 `;
 
-export const GetBestHousesInAreaInput = `
-    input GetBestHousesInAreaInput {
-        lat:    Float!
-        lng:    Float!
+export const DeleteHouseInput = `
+    input DeleteHouseInput {
+        id:     Int!
     }
 `;

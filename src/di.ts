@@ -1,3 +1,4 @@
+import { DeleteHouseService } from "./services/deleteHouse.service";
 import { GetBiggestHousesService } from "./services/getBiggestHouses.service";
 import { PrismaClient } from "@prisma/client";
 import { CreateHouseService } from "./services/createHouse.service";
@@ -15,8 +16,9 @@ if (!prisma) {
 export const getAllHousesService = new GetAllHousesService(prisma);
 export const getHouseService = new GetHouseService(prisma);
 export const getBiggestHousesService = new GetBiggestHousesService(prisma);
-export const createHouseService = new CreateHouseService(prisma);
-export const updateHouseService = new UpdateHouseService(prisma);
 export const getBestHousesInAreaService = new GetBestHousesInAreaService(
   prisma
 );
+export const createHouseService = new CreateHouseService(prisma);
+export const updateHouseService = new UpdateHouseService(prisma);
+export const deleteHouseService = new DeleteHouseService(prisma);

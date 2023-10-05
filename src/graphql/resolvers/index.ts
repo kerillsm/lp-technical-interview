@@ -1,5 +1,6 @@
 import {
   createHouseService,
+  deleteHouseService,
   getAllHousesService,
   getBestHousesInAreaService,
   getBiggestHousesService,
@@ -10,7 +11,8 @@ import { CreateHouseDTO, UpdateHouseDTO } from "./types";
 
 export const rootResolver = {
   Query: {
-    house: (_: any, { args: id }: { args: number }) => getHouseService.get(id),
+    house: (_: any, { args }: { args: { id: number } }) =>
+      getHouseService.get(args.id),
     houses: () => getAllHousesService.getAll(),
     biggestHouses: () => getBiggestHousesService.get(),
     nearestBiggestNewsetHouses: (
@@ -19,12 +21,13 @@ export const rootResolver = {
     ) => getBestHousesInAreaService.get(args),
   },
   Mutation: {
-    createHouse: (_: any, { args }: { args: CreateHouseDTO }) => {
-      return createHouseService.create(args);
-    },
+    createHouse: (_: any, { args }: { args: CreateHouseDTO }) =>
+      createHouseService.create(args),
     updateHouse: (_: any, { args }: { args: UpdateHouseDTO }) => {
       const { id, ...rest } = args;
       return updateHouseService.update(id, rest);
     },
+    deleteHouse: (_: any, { args }: { args: { id: number } }) =>
+      deleteHouseService.delete(args.id),
   },
 };
