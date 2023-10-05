@@ -6,8 +6,7 @@ import {
   getHouseService,
   updateHouseService,
 } from "../../di";
-import { CreateHouseServiceDTO } from "../../services/createHouse.service";
-import { UpdateHouseServiceDTO } from "../../services/updateHouse.service";
+import { CreateHouseDTO, UpdateHouseDTO } from "./types";
 
 export const rootResolver = {
   Query: {
@@ -20,13 +19,10 @@ export const rootResolver = {
     ) => getBestHousesInAreaService.get(args),
   },
   Mutation: {
-    createHouse: (_: any, { args }: { args: CreateHouseServiceDTO }) => {
+    createHouse: (_: any, { args }: { args: CreateHouseDTO }) => {
       return createHouseService.create(args);
     },
-    updateHouse: (
-      _: any,
-      { args }: { args: UpdateHouseServiceDTO & { id: number } }
-    ) => {
+    updateHouse: (_: any, { args }: { args: UpdateHouseDTO }) => {
       const { id, ...rest } = args;
       return updateHouseService.update(id, rest);
     },
