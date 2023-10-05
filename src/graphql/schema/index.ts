@@ -1,15 +1,21 @@
-import { CreateHouseInput, HouseSchema } from "./House.schema";
+import {
+  CreateHouseInput,
+  HouseSchema,
+  UpdateHouseInput,
+} from "./House.schema";
 
 export const rootSchema = `#graphql
     ${HouseSchema}
     ${CreateHouseInput}
+    ${UpdateHouseInput}
 
     type Query {
-        house (ars: Int): House!
+        house (args: Int): House!
         houses: [House!]!
     }
 
     type Mutation {
-        createHouse (ars: CreateHouseInput!): House!
+        createHouse (args: CreateHouseInput!): House!
+        updateHouse (args: UpdateHouseInput!): House!
     }
 `;
