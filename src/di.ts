@@ -1,6 +1,6 @@
+import { PrismaClient } from "@prisma/client";
 import { DeleteHouseService } from "./services/deleteHouse.service";
 import { GetBiggestHousesService } from "./services/getBiggestHouses.service";
-import { PrismaClient } from "@prisma/client";
 import { CreateHouseService } from "./services/createHouse.service";
 import { GetAllHousesService } from "./services/getAllHouses.service";
 import { GetHouseService } from "./services/getHouse.service";
