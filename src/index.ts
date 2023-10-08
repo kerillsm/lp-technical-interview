@@ -2,6 +2,7 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import bodyParser from "body-parser";
+import "dotenv/config";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -17,6 +18,11 @@ const server = new ApolloServer({
   typeDefs: rootSchema,
   resolvers: rootResolver,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  includeStacktraceInErrorResponses: false,
+});
+
+app.use("/api/", (resp, req) => {
+  req.send("<h1>Hello wrld!</h1>");
 });
 
 server.start().then(() => {

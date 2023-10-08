@@ -1,4 +1,5 @@
-import { House, PrismaClient } from "@prisma/client";
+import { Pool } from "pg";
+import { House } from "../models/House.model";
 
 export interface GetBestHousesInAreaServiceDTO {
   lat: number;
@@ -6,32 +7,24 @@ export interface GetBestHousesInAreaServiceDTO {
 }
 
 export class GetBestHousesInAreaService {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly pool: Pool) {}
 
   async get({ lat, lng }: GetBestHousesInAreaServiceDTO): Promise<House[]> {
     try {
-      const distance = 0.02; // +- 2.2km radius
-      return this.prisma.house.findMany({
-        where: {
-          lat: {
-            gte: lat - distance,
-            lte: lat + distance,
-          },
-          lng: {
-            gte: lng - distance,
-            lte: lng + distance,
-          },
-        },
-        orderBy: [
-          {
-            rooms: "desc",
-          },
-          {
-            buildAt: "desc",
-          },
-        ],
-        take: 3,
-      });
+      const distance = 2000;
+      const r = await this.pool.query<House>(
+        `
+          SELECT *, ST_X(coords) AS "lng", ST_Y(coords) AS "lat" FROM house as house
+          WHERE ST_DWithin(
+              house.coords::geography,
+              ST_MakePoint(${lng},  ${lat})::geography,
+              ${distance}
+          )
+          ORDER BY "rooms" DESC, "buildAt" 
+          LIMIT 3
+        `
+      );
+      return r.rows;
     } catch (err) {
       throw err;
     }

@@ -1,18 +1,15 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model House {
+model house {
   id      Int      @id @default(autoincrement())
   name    String
   rooms   Int
-  lat     Float
-  lng     Float
+  coords  Unsupported("geometry(Point, 4326)")
   buildAt DateTime
-  price   Int
+
+  @@index([coords], name: "location_idx", type: Gist)
+  @@index([rooms], name: "rooms_idx")
 }
