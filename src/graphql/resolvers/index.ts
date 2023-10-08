@@ -7,13 +7,15 @@ import {
   getHouseService,
   updateHouseService,
 } from "../../di";
+import { GetAllHousesServiceDTO } from "../../services/getAllHouses.service";
 import { CreateHouseDTO, UpdateHouseDTO } from "./types";
 
 export const rootResolver = {
   Query: {
     house: (_: any, { args }: { args: { id: number } }) =>
       getHouseService.get(args.id),
-    houses: () => getAllHousesService.getAll(),
+    houses: (_: any, { args }: { args?: GetAllHousesServiceDTO }) =>
+      getAllHousesService.getAll(args ?? {}),
     biggestHouses: () => getBiggestHousesService.get(),
     nearestBiggestNewsetHouses: (
       _: any,

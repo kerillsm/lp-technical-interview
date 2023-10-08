@@ -3,6 +3,7 @@ import {
   DeleteHouseInput,
   GetBestHousesInAreaInput,
   GetHouseInput,
+  GetHousesInput,
   HouseSchema,
   UpdateHouseInput,
 } from "./House.schema";
@@ -10,6 +11,7 @@ import {
 export const rootSchema = `#graphql
     ${HouseSchema}
     ${GetHouseInput}
+    ${GetHousesInput}
     ${GetBestHousesInAreaInput}
     ${CreateHouseInput}
     ${UpdateHouseInput}
@@ -17,7 +19,7 @@ export const rootSchema = `#graphql
 
     type Query {
         house (args: GetHouseInput!): House!
-        houses: [House!]!
+        houses (args: GetHousesInput): [House!]!
         biggestHouses: [House!]!
         nearestBiggestNewsetHouses (args: GetBestHousesInAreaInput!): [House!]!
     }

@@ -9,6 +9,13 @@ export const HouseSchema = `#graphql
     }
 `;
 
+export const GetHousesInput = `
+    input GetHousesInput {
+        skip:   Int
+        limit:  Int
+    }
+`;
+
 export const GetHouseInput = `
     input GetHouseInput {
         id:     Int!
