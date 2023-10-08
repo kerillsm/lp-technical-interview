@@ -12,3 +12,4 @@ CREATE TABLE house (
 );
 -- CreateIndex
 CREATE INDEX "location_idx" ON house USING GIST ("coords");
+CREATE INDEX "rooms_idx" ON house("rooms");
