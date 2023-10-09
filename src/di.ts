@@ -1,3 +1,4 @@
+import { Pool } from "pg";
 import { DeleteHouseService } from "./services/deleteHouse.service";
 import { GetBiggestHousesService } from "./services/getBiggestHouses.service";
 import { CreateHouseService } from "./services/createHouse.service";
@@ -5,7 +6,6 @@ import { GetAllHousesService } from "./services/getAllHouses.service";
 import { GetHouseService } from "./services/getHouse.service";
 import { UpdateHouseService } from "./services/updateHouse.service";
 import { GetBestHousesInAreaService } from "./services/getBestHousesInArea.service";
-import { Pool } from "pg";
 
 let pool: Pool | null = null;
 if (!pool) {

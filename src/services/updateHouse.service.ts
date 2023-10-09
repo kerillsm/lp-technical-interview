@@ -16,8 +16,8 @@ export class UpdateHouseService {
           "name" = $1,
           "rooms" = $2,
           "coords" = ST_GeomFromText('POINT(${data.lng} ${data.lat})', 4326),
-          "buildAt" = to_timestamp($3, 'YYYY-MM-DD"T"HH24:MI:SS.USSTZH'),
-        WHERE "id" = $4
+          "buildAt" = to_timestamp($3, 'YYYY-MM-DD"T"HH24:MI:SS.USSTZH')
+        WHERE id=$4
         RETURNING *, ST_X(coords) AS "lng", ST_Y(coords) AS "lat";
       `,
         [data.name, data.rooms, data.buildAt, id]
