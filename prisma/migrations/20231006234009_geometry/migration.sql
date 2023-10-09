@@ -8,7 +8,7 @@ CREATE TABLE house (
     "coords" geometry(Point, 4326) NOT NULL,
     "buildAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "House_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "house_pkey" PRIMARY KEY ("id")
 );
 -- CreateIndex
 CREATE INDEX "location_idx" ON house USING GIST ("coords");
